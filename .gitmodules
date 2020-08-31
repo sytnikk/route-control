@@ -1,9 +1,9 @@
 [submodule "route-control-api"]
-	path = ./route-control-api
+	path = route-control-api
 	url = https://github.com/sytnikk/route-control-api
 [submodule "route-control-db"]
-	path = ./route-control-db
+	path = route-control-db
 	url = https://github.com/sytnikk/route-control-db.git
 [submodule "route-control-front"]
-	path = ./route-control-front
+	path = route-control-front
 	url = https://github.com/sytnikk/route-control-front.git
