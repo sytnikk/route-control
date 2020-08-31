@@ -1,0 +1,42 @@
+version: '3.6'
+services:
+  route-control-front:
+    build: ./route-control-front
+    networks:
+      - route-control
+    ports:
+      - '80:80'
+    depends_on:
+      - route-control-api
+  route-control-db:
+    build: ./route-control-db
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: route-control
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+    networks:
+      - route-control
+  route-control-api:
+    build: ./route-control-api
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      DATA_BASE_TYPE: mysql
+      DATA_BASE_HOST: route-control-db
+      DATA_BASE_PORT: 3306
+      DATA_BASE: route-control
+      DATA_BASE_USERNAME: test
+      DATA_BASE_PASSWORD: test
+      APP_PORT: 3000
+    depends_on:
+      - route-control-db
+    networks:
+      - route-control
+networks:
+  route-control:
+    name: route-control
